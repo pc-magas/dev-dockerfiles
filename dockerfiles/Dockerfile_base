@@ -1,2 +1,4 @@
 FROM php:7-fpm-alpine
 
+LABEL "com.example.vendor"="etable.gr"
+LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.org>"
