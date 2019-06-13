@@ -4,4 +4,16 @@ LABEL "com.example.vendor"="etable.gr"
 LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.org>"
 
 
-RUN 
+RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxml2-dev icu-dev postgresql-dev&&\
+    docker-php-ext-install xmlrpc && \
+	docker-php-ext-install mbstring && \
+	docker-php-ext-install zip && \
+	docker-php-ext-install intl && \
+ 	docker-php-ext-install soap && \
+ 	docker-php-ext-install pdo pdo_pgsql && \
+	docker-php-ext-install gd && \
+	docker-php-ext-install opcache && \
+    docker-php-ext-install curl && \
+    docker-php-ext-install soap && \
+    apk del gcc g++ &&\
+    rm -rf /var/cache/apk/*

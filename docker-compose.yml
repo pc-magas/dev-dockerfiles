@@ -2,6 +2,15 @@ version: '3'
 
 services:
   base:
-    context: .
-    dockerfile: ./dockerfiles/Dockerfile_base
-  image: etable/php:base
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile_base
+    image: etable/php:base
+  
+  develop:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/
+    image: etable/php:dev-n-build
+    links: 
+      - base
