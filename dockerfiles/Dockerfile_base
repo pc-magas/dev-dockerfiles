@@ -4,7 +4,7 @@ LABEL "com.example.vendor"="etable.gr"
 LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.org>"
 
 
-RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxml2-dev icu-dev postgresql-dev&&\
+RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxml2-dev icu-dev postgresql-dev curl-dev &&\
     docker-php-ext-install xmlrpc && \
 	docker-php-ext-install mbstring && \
 	docker-php-ext-install zip && \
