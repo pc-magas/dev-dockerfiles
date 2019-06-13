@@ -10,7 +10,7 @@ services:
   develop:
     build:
       context: .
-      dockerfile: ./dockerfiles/
+      dockerfile: ./dockerfiles/Dockerfile_develop
     image: etable/php:dev-n-build
     links: 
       - base
