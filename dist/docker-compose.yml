@@ -1,0 +1,15 @@
+version: '3'
+services:
+  develop:
+    image: etable/php:dev-n-build
+    volumes:
+       - ${CODE-BASE-PATH}:/home/developer/code
+
+  nginx:
+    from: nginx:alpine
+    port:
+      - 7080:7080
+    links:
+      develop
+    volumes:
+      - ${CODE-BASE-PATH}:/home/developer/code
