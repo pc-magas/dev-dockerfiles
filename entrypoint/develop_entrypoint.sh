@@ -31,5 +31,10 @@ if [ ! -z "${XDEBUG_IDE_KEY}" ]; then
     echo "xdebug.idekey=\"${XDEBUG_IDE_KEY}\"" >> ${XDEBUG_CONF_FILE}
 fi
 
+echo "Fixing execution permissions"
+find /home/developer/code -iname "*.php" | xargs chmod 655
+
+cat ${FPM_CONF_DIR}/dev.conf
+
 echo "Launch application"
 exec "$@"

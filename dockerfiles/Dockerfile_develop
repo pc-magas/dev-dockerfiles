@@ -9,6 +9,7 @@ ARG GROUPID=1000
 ENV DOCKER_UID=${USERID} \
     DOCKER_GID=${GROUPID} \
     PHP_CONF_DIR="/usr/local/etc/php/conf.d" \
+    FPM_CONF_DIR="/usr/local/etc/php-fpm.d" \
     XDEBUG_CONF_FILE=${PHP_CONF_DIR}/docker-php-ext-xdebug.ini \
     XDEBUG_HOST="" \
     XDEBUG_IDE_KEY="" \
@@ -41,7 +42,19 @@ RUN echo "Installing Development Dpendencies \n" &&\
     adduser -D -u ${DOCKER_UID} -G developer -h /home/developer -s /bin/bash developer &&\
     chown developer:developer -R /home/developer/code &&\
     apk del build-dependencies &&\
+    touch ${FPM_CONF_DIR}/dev.conf &&\
+    echo "[dev]" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "listen = 127.0.0.1:9092" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "user = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "group = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "pm = ondemand" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "pm.max_children = 5" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "pm.start_servers = 2" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "pm.min_spare_servers = 1"  >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "pm.max_spare_servers = 3" >> ${FPM_CONF_DIR}/dev.conf &&\
     rm -rf /var/cache/apk/*
+
+EXPOSE 9092
 
 # I make seperate layer because Entrypoint is most likely to change
 COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
