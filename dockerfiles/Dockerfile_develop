@@ -6,6 +6,11 @@ LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.or
 ARG USERID=1000
 ARG GROUPID=1000
 
+ENV DOCKER_UID=${USERID} \
+    DOCKER_GID=${GROUPID}
+
+COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
+
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories &&\
     apk add --update --virtual build-dependencies build-base gcc wget autoconf &&\
     apk add --update bash shadow git bash-completion bash-doc &&\
@@ -16,12 +21,11 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     chmod +x /bin/composer &&\
     pecl install xdebug  &&\
     docker-php-ext-enable xdebug &&\
-    addgroup -g ${GROUPID} developer &&\
+    addgroup -g ${DOCKER_GID} developer &&\
     mkdir -p /home/developer/code &&\
-    adduser -D -u ${USERID} -G developer -h /home/developer -s /bin/bash developer &&\
+    adduser -D -u ${DOCKER_UID} -G developer -h /home/developer -s /bin/bash developer &&\
     chown developer:developer -R /home/developer/code &&\
     apk del build-dependencies &&\
     rm -rf /var/cache/apk/*
-
 
 
