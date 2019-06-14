@@ -20,7 +20,7 @@ COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
     chown root:root /usr/local/bin/entrypoint.sh &&\
-    chmod +x-w /usr/local/bin/entrypoint.sh &&\
+    chmod +x /usr/local/bin/entrypoint.sh &&\
     echo "Installing Development Dpendencies \n" &&\
     echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories &&\
     apk add --update --virtual build-dependencies build-base gcc wget autoconf &&\
@@ -52,5 +52,5 @@ RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
 VOLUME /home/developer/code
 WORKDIR /home/developer/code
 
-ENTRYPOINT [/usr/local/bin/entrypoint.sh]
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 CMD ["php-fpm"]
