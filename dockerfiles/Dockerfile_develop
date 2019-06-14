@@ -16,7 +16,7 @@ ENV DOCKER_UID=${USERID} \
     XDEBUG_DBGP=FALSE
 
 
-COPY entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
     chown root:root /usr/local/bin/entrypoint.sh &&\
@@ -52,5 +52,5 @@ RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
 VOLUME /home/developer/code
 WORKDIR /home/developer/code
 
-ENTRYPOINT [usr/local/bin/entrypoint.sh]
+ENTRYPOINT [/usr/local/bin/entrypoint.sh]
 CMD ["php-fpm"]

@@ -6,10 +6,10 @@ services:
        - ${CODE_BASE_PATH}:/home/developer/code
 
   nginx:
-    from: nginx:alpine
-    port:
+    image: nginx:alpine
+    ports:
       - 7080:7080
     links:
-      develop
+      - develop
     volumes:
       - ${CODE_BASE_PATH}:/home/developer/code

@@ -7,6 +7,9 @@
 * `etable/^app^:prod-vX.X.X`: Production-ready image of version `vX.X.X`.
 * `etable/^app^:prod-latest`: Production-ready image of the latest version.
 
-# Volumes
+# Per Image Documentation
 
-# Ports
+## `etable/php:dev-n-build`
+This image exposes the path `/home/developer/code` where each user can place it own code there. Also it utilizes the default sockets and volumes from `php:7.2-fpm-alpine` as well therefore it uses any volumes and ports from it.
+
+Also 
