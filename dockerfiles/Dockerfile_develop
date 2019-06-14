@@ -11,7 +11,9 @@ ENV DOCKER_UID=${USERID} \
 
 COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories &&\
+RUN chown root:root /usr/local/bin/entrypoint.sh &&\
+    chmod +x-w /usr/local/bin/entrypoint.sh &&\
+    echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories &&\
     apk add --update --virtual build-dependencies build-base gcc wget autoconf &&\
     apk add --update bash shadow git bash-completion bash-doc &&\
     php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" &&\
@@ -21,6 +23,7 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     chmod +x /bin/composer &&\
     pecl install xdebug  &&\
     docker-php-ext-enable xdebug &&\
+    mkdir -p 
     addgroup -g ${DOCKER_GID} developer &&\
     mkdir -p /home/developer/code &&\
     adduser -D -u ${DOCKER_UID} -G developer -h /home/developer -s /bin/bash developer &&\
@@ -29,3 +32,7 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
     rm -rf /var/cache/apk/*
 
 
+VOLUME /home/developer/code
+
+ENTRYPOINT [usr/local/bin/entrypoint.sh]
+CMD ["php-fpm"]
