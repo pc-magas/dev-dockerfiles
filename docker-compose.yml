@@ -14,3 +14,13 @@ services:
     image: etable/php:dev-n-build
     links: 
       - base
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 7080:7080
+    links:
+      - develop
+    volumes:
+      - ${CODE_BASE_PATH}:/home/developer/code
+      - "./dist/nginx.conf:/etc/nginx/nginx.conf:ro"
