@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   base:
@@ -12,6 +12,8 @@ services:
       context: .
       dockerfile: ./dockerfiles/Dockerfile_develop
     image: etable/php:dev-n-build
+    volumes:
+      - "nginx-php:/home/developer/code"
     links: 
       - base
 
@@ -22,5 +24,13 @@ services:
     links:
       - "develop:develop"
     volumes:
-      - "${CODE_BASE_PATH}:/var/www/html"
+      - "nginx-php:/var/www/html"
       - "./dist/nginx.conf:/etc/nginx/nginx.conf:ro"
+  
+volumes:
+  nginx-php: 
+     driver: local
+     driver_opts:
+      o: bind
+      type: none
+      device: ${CODE_BASE_PATH}
