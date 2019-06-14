@@ -22,5 +22,5 @@ services:
     links:
       - "develop:develop"
     volumes:
-      - ${CODE_BASE_PATH}:/home/developer/code
+      - "${CODE_BASE_PATH}:/var/www/html"
       - "./dist/nginx.conf:/etc/nginx/nginx.conf:ro"
