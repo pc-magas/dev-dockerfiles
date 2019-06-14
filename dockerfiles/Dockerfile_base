@@ -23,3 +23,5 @@ RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxm
     docker-php-ext-enable memcached &&\
     apk del build-dependencies &&\
     rm -rf /var/cache/apk/*
+
+CMD ["php", "-r", "exit();"]

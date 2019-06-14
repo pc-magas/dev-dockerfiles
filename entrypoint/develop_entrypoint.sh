@@ -1,4 +1,4 @@
-#/bin/sh
+ #!/bin/sh
 
 USER_ID=$(id -u developer)
 GROUP_ID=$(id -g developer)
@@ -32,4 +32,4 @@ if [ ! -z "${XDEBUG_IDE_KEY}" ]; then
 fi
 
 echo "Launch application"
-exec $@
+echo "$@"
