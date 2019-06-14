@@ -3,7 +3,7 @@ services:
   develop:
     image: etable/php:dev-n-build
     volumes:
-       - ${CODE-BASE-PATH}:/home/developer/code
+       - ${CODE_BASE_PATH}:/home/developer/code
 
   nginx:
     from: nginx:alpine
@@ -12,4 +12,4 @@ services:
     links:
       develop
     volumes:
-      - ${CODE-BASE-PATH}:/home/developer/code
+      - ${CODE_BASE_PATH}:/home/developer/code
