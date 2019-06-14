@@ -32,4 +32,4 @@ if [ ! -z "${XDEBUG_IDE_KEY}" ]; then
 fi
 
 echo "Launch application"
-echo "$@"
+php-fpm

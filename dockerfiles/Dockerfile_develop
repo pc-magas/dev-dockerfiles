@@ -53,5 +53,4 @@ RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
 VOLUME /home/developer/code
 WORKDIR /home/developer/code
 
-ENTRYPOINT ["/bin/sh", "-c","/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["/bin/sh","-c","/usr/local/bin/entrypoint.sh"]
