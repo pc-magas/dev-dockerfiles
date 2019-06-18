@@ -71,3 +71,14 @@ XDEBUG_HOST | N/A | The host where xdebug uses for connection.
 XDEBUG_IDE_KEY | N/A | The IDE key where is USED in order to indicates the ide.
 XDEBUG_PORT | 9000 | Default port that xdebug uses for connection.
 XDEBUG_DBGP | FALSE | Whether or not to use XDEBUG `dbgp` protocol.
+
+# Docker compose documentation
+
+The `docker-compose.yml` requires the parameter `CODE_BASE_PATH` indicating where the code where your app is stored and developed.
+In order to provide the required parameter make a `.env` file and place the following settings:
+
+```env
+CODE_BASE_PATH=^some_path^
+```
+
+Keep in mind that you should **NOT** use any kind of quotes to the value.
