@@ -8,8 +8,6 @@ ARG GROUPID=1000
 
 ENV DOCKER_UID=${USERID} \
     DOCKER_GID=${GROUPID} \
-    PHP_CONF_DIR="/usr/local/etc/php/conf.d" \
-    FPM_CONF_DIR="/usr/local/etc/php-fpm.d" \
     XDEBUG_CONF_FILE=${PHP_CONF_DIR}/docker-php-ext-xdebug.ini \
     XDEBUG_HOST="" \
     XDEBUG_IDE_KEY="" \
