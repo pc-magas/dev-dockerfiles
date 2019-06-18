@@ -12,7 +12,7 @@
 ## `etable/php:base`
 Foundations with common php configuration and setup. It uses `memcache` session type and in order to use it is recommended to use `docer-compose` and the following settings:
 
-```
+```yml
 # Some other docker-compose.yml configurations
   my_image:
     from: ^your_image_built_upon_etable/php:base^
@@ -26,7 +26,7 @@ Foundations with common php configuration and setup. It uses `memcache` session 
 
 In case that for some reason you need to rename your `memcache` service (for example `my_memcache`) differently then use the following approach into `docker-compose.yml`:
 
-```
+```yml
 # Some other docker-compose.yml configurations
   my_image:
     from: ^your_image_built_upon_etable/php:base^
