@@ -69,5 +69,5 @@ DOCKER_GID `GROUPID` build argument | The group id in order to map the user.
 XDEBUG_CONF_FILE | ${PHP_CONF_DIR}/docker-php-ext-xdebug.ini | Where the xdebug configuration is located.
 XDEBUG_HOST | N/A | The host where xdebug uses for connection.
 XDEBUG_IDE_KEY | N/A | The IDE key where is USED in order to indicates the ide.
-XDEBUG_PORT | 9000 | Default port that xdebug uses for connection. 
+XDEBUG_PORT | 9000 | Default port that xdebug uses for connection.
 XDEBUG_DBGP | FALSE | Whether or not to use XDEBUG `dbgp` protocol.
