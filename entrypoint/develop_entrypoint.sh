@@ -32,7 +32,7 @@ if [ ! -z "${XDEBUG_IDE_KEY}" ]; then
 fi
 
 echo "Fixing execution permissions"
-find /home/developer/code -iname "*.php" | xargs chmod 655
+find /home/developer/code -iname "*.php" | xargs chmod 777
 
 echo "Launch application"
 exec "$@"

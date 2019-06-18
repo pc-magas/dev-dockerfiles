@@ -41,20 +41,13 @@ RUN echo "Installing Development Dpendencies \n" &&\
     mkdir -p /home/developer/code &&\
     adduser -D -u ${DOCKER_UID} -G developer -h /home/developer -s /bin/bash developer &&\
     chown developer:developer -R /home/developer/code &&\
+    chmod 755 /home/developer/code &&\
+    sed -i 's/www-data/developer/gi' ${FPM_CONF_DIR}/www.conf &&\
     apk del build-dependencies &&\
-    touch ${FPM_CONF_DIR}/dev.conf &&\
-    echo "[dev]" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "listen = 0.0.0.0:9092" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "user = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "group = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "pm = ondemand" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "pm.max_children = 5" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "pm.start_servers = 2" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "pm.min_spare_servers = 1"  >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "pm.max_spare_servers = 3" >> ${FPM_CONF_DIR}/dev.conf &&\
     rm -rf /var/cache/apk/*
 
-EXPOSE 9092
+
+VOLUME /home/developer/code
 
 # I make seperate layer because Entrypoint is most likely to change
 COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -63,7 +56,6 @@ RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
     chown root:root /usr/local/bin/entrypoint.sh &&\
     chmod +x /usr/local/bin/entrypoint.sh
 
-VOLUME /home/developer/code
 WORKDIR /home/developer/code
 
 ENTRYPOINT /usr/local/bin/entrypoint.sh php-fpm
