@@ -36,13 +36,6 @@ RUN echo "Installing Development Dpendencies \n" &&\
     echo "xdebug.remote_mode=req" >> ${XDEBUG_CONF_FILE} &&\
     echo "xdebug.remote_log=xdebug.log" >> ${XDEBUG_CONF_FILE} &&\
     cp ${XDEBUG_CONF_FILE} ${XDEBUG_CONF_FILE}.orig &&\
-    echo "Making a Development User \n" &&\
-    addgroup -g ${DOCKER_GID} developer &&\
-    mkdir -p /home/developer/code &&\
-    adduser -D -u ${DOCKER_UID} -G developer -h /home/developer -s /bin/bash developer &&\
-    chown developer:developer -R /home/developer/code &&\
-    chmod 755 /home/developer/code &&\
-    sed -i 's/www-data/developer/gi' ${FPM_CONF_DIR}/www.conf &&\
     apk del build-dependencies &&\
     rm -rf /var/cache/apk/*
 

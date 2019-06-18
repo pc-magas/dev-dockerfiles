@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile_base
-    image: etable/php:base
+    image: pcmagas/php:base
   
   develop:
     build:
@@ -13,7 +13,7 @@ services:
       dockerfile: ./dockerfiles/Dockerfile_develop
     image: etable/php:dev-n-build
     volumes:
-      - "nginx-php:/home/developer/code"
+      - "nginx-php:/var/www/html"
     links: 
       - base
 

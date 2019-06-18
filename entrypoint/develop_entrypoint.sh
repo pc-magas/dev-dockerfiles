@@ -1,16 +1,22 @@
  #!/bin/sh
 
-USER_ID=$(id -u developer)
-GROUP_ID=$(id -g developer)
+WEB_USER="www-data"
+
+USER_ID=$(id -u ${WEB_USER})
+GROUP_ID=$(id -g ${WEB_USER})
 
 echo "Setting the correct user and group id for shell use"
 if [ ${DOCKER_UID} != ${USER_ID} ]; then
-  usermod -u ${DOCKER_UID} developer
+  usermod -u ${DOCKER_UID} ${WEB_USER}
 fi
 
 if [ ${DOCKER_GID} != ${GROUP_ID} ]; then
-  groupmod -g ${DOCKER_GID} developer
+  groupmod -g ${DOCKER_GID} ${WEB_USER}
 fi
+
+CURRENT_UID=$(id -u ${WEB_USER})
+CURRENT_GID=$(id -g ${WEB_USER})
+echo "USER: ${WEB_USER} userid: ${CURRENT_UID} and group id ${CURRENT_GID}"
 
 echo "Setup xdebug"
 cp ${XDEBUG_CONF_FILE}.orig ${XDEBUG_CONF_FILE}
