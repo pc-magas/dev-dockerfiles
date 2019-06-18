@@ -9,7 +9,24 @@
 
 # Per Image Documentation
 
-## `etable/php:dev-n-build`
-This image exposes the path `/home/developer/code` where each user can place it own code there. Also it utilizes the default sockets and volumes from `php:7.2-fpm-alpine` as well therefore it uses any volumes and ports from it.
+## `etable/php:base`
+In order to 
 
-Also 
+## `etable/php:dev-n-build`
+
+Listening PORT: 9000
+Php Files VOLUME: `/var/www/html`
+
+Enviromental Variables:
+
+Name | Default Value | Description
+--- | --- | ---
+DOCKER_UID `USERID` build argument | The user id in order to map the user.
+DOCKER_GID `GROUPID` build argument | The group id in order to map the user.
+PHP_CONF_DIR | "/usr/local/etc/php/conf.d"  | The directory where php stored its cvonfiguration.
+FPM_CONF_DIR | "/usr/local/etc/php-fpm.d" | The directory where the php-fpm has its configuration.
+XDEBUG_CONF_FILE | ${PHP_CONF_DIR}/docker-php-ext-xdebug.ini | Where the xdebug configuration is located.
+XDEBUG_HOST | N/A | The host where xdebug uses for connection.
+XDEBUG_IDE_KEY | N/A | The IDE key where is USED in order to indicates the ide.
+XDEBUG_PORT | 9000 | Default port that xdebug uses for connection. 
+XDEBUG_DBGP | FALSE | Whether or not to use XDEBUG `dbgp` protocol.

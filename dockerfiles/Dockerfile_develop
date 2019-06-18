@@ -46,6 +46,4 @@ RUN echo "Fixing Permissions on Entrypoint Script \n" &&\
     chown root:root /usr/local/bin/entrypoint.sh &&\
     chmod +x /usr/local/bin/entrypoint.sh
 
-WORKDIR /home/developer/code
-
 ENTRYPOINT /usr/local/bin/entrypoint.sh php-fpm

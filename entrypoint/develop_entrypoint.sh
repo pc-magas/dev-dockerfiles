@@ -40,5 +40,8 @@ fi
 echo "Fixing execution permissions"
 find /home/developer/code -iname "*.php" | xargs chmod 777
 
+echo "Running Composer"
+
+
 echo "Launch application"
 exec "$@"
