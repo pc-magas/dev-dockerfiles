@@ -17,8 +17,7 @@ services:
     links: 
       - base
       - memcache
-      - redis
-
+      
   nginx:
     image: nginx:alpine
     ports:
@@ -31,9 +30,6 @@ services:
   
   memcache:
     image: memcached:alpine
-  
-  redis:
-    image: redis:alpine
 
 volumes:
   nginx-php: 
