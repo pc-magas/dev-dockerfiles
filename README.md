@@ -10,9 +10,36 @@
 # Per Image Documentation
 
 ## `etable/php:base`
-In order to 
+Foundations with common php configuration and setup. It uses `memcache` session type and in order to use it is recommended to use `docer-compose` and the following settings:
+
+```
+# Some other docker-compose.yml configurations
+  my_image:
+    from: ^your_image_built_upon_etable/php:base^
+    links:
+        - memcache
+
+  memcache:
+    image: memcached:alpine
+
+```
+
+In case that for some reason you need to rename your `memcache` service (for example `my_memcache`) differently then use the following approach into `docker-compose.yml`:
+
+```
+# Some other docker-compose.yml configurations
+  my_image:
+    from: ^your_image_built_upon_etable/php:base^
+    links:
+        - my_memcache:memcache
+
+  my_memcache:
+    image: memcached:alpine
+```
+
 
 ## `etable/php:dev-n-build`
+This image inherits the `etable/php:base` where in order to connect into the memcache you should consult the documentation regarding `etable/php:base`.
 
 Listening PORT: 9000
 Php Files VOLUME: `/var/www/html`
