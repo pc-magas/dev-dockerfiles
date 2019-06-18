@@ -34,7 +34,5 @@ fi
 echo "Fixing execution permissions"
 find /home/developer/code -iname "*.php" | xargs chmod 655
 
-cat ${FPM_CONF_DIR}/dev.conf
-
 echo "Launch application"
 exec "$@"
