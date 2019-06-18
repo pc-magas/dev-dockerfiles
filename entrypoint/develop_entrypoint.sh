@@ -38,9 +38,9 @@ if [ ! -z "${XDEBUG_IDE_KEY}" ]; then
 fi
 
 echo "Fixing execution permissions"
-find /home/developer/code -iname "*.php" | xargs chmod 777
+find /var/www/html -iname "*.php" | xargs chmod 777
 
-echo "Running Composer"
+# echo "Running Composer"
 
 
 echo "Launch application"
