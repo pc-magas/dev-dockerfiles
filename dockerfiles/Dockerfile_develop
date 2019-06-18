@@ -39,9 +39,6 @@ RUN echo "Installing Development Dpendencies \n" &&\
     apk del build-dependencies &&\
     rm -rf /var/cache/apk/*
 
-
-VOLUME /home/developer/code
-
 # I make seperate layer because Entrypoint is most likely to change
 COPY ./entrypoint/develop_entrypoint.sh /usr/local/bin/entrypoint.sh
 
