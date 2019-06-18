@@ -44,7 +44,7 @@ RUN echo "Installing Development Dpendencies \n" &&\
     apk del build-dependencies &&\
     touch ${FPM_CONF_DIR}/dev.conf &&\
     echo "[dev]" >> ${FPM_CONF_DIR}/dev.conf &&\
-    echo "listen = 127.0.0.1:9092" >> ${FPM_CONF_DIR}/dev.conf &&\
+    echo "listen = 0.0.0.0:9092" >> ${FPM_CONF_DIR}/dev.conf &&\
     echo "user = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
     echo "group = developer" >> ${FPM_CONF_DIR}/dev.conf &&\
     echo "pm = ondemand" >> ${FPM_CONF_DIR}/dev.conf &&\
