@@ -3,11 +3,8 @@ FROM etable/php:base
 LABEL "com.example.vendor"="etable.gr"
 LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.org>"
 
-ARG USERID=1000
-ARG GROUPID=1000
-
-ENV DOCKER_UID=${USERID} \
-    DOCKER_GID=${GROUPID} \
+ENV DOCKER_UID=1000 \
+    DOCKER_GID=1000 \
     XDEBUG_CONF_FILE=${PHP_CONF_DIR}/docker-php-ext-xdebug.ini \
     XDEBUG_HOST="" \
     XDEBUG_IDE_KEY="" \

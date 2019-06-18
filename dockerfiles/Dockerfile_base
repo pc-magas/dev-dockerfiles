@@ -3,9 +3,9 @@ FROM php:7.2-fpm-alpine
 LABEL "com.example.vendor"="etable.gr"
 LABEL maintainer="Desyllas Dimitrios <d.desyllas@e-table.gr> <pcmagas@disroot.org>"
 
-ENV PHP_CONF_DIR="/usr/local/etc/php/conf.d" \
-    FPM_CONF_DIR="/usr/local/etc/php-fpm.d" \
+ENV PHP_CONF_DIR="$PHP_INI_DIR/conf.d" \
     PHP_SETTINGS="$PHP_INI_DIR/php.ini"\
+    FPM_CONF_DIR="/usr/local/etc/php-fpm.d" \
     SESSION_STORAGE_TYPE="memcache"\
     SESSION_STORAGE_PATH="tcp:\/\/memcache:11211"
 
@@ -22,8 +22,6 @@ RUN apk add --update libzip-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libxm
 	docker-php-ext-install mbstring && \
     docker-php-ext-install intl &&\
     docker-php-ext-install pcntl &&\
-    pecl install redis &&\
-    docker-php-ext-enable redis &&\
     pecl install memcached &&\
     docker-php-ext-enable memcached &&\
     apk del build-dependencies &&\
