@@ -13,7 +13,7 @@ services:
       dockerfile: ./dockerfiles/Dockerfile_develop
     image: etable/php:dev-n-build
     volumes:
-      - "nginx-php:/var/www/html"
+      - "${CODE_BASE_PATH}:/var/www/html"
     links: 
       - base
       - memcache
@@ -25,7 +25,7 @@ services:
     links:
       - "develop:develop"
     volumes:
-      - "nginx-php:/var/www/html"
+      - "${CODE_BASE_PATH}:/var/www/html"
       - "./dist/nginx.conf:/etc/nginx/nginx.conf:ro"
   
   memcache:
