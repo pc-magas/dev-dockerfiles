@@ -5,13 +5,13 @@ services:
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile_base
-    image: etable/php:base
+    image: ddesyllas/php-dev:base
   
   develop:
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile_develop
-    image: etable/php:dev-n-build
+    image: ddesyllas/php-dev:dev-n-build
     volumes:
       - "${CODE_BASE_PATH}:/var/www/html"
     links: 
